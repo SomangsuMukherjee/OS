@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form - Technical University of Košice</title>
+    <!-- Load Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Protest+Guerrilla&family=Sofadi+One&display=swap');
+        /* Custom styles for the navbar */
+        .navbar {
+            background-color: black;
+        }
+
+        .navbar-brand img {
+            max-height: 70px; 
+            padding: 10px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("static/fbSystem/Images/tuke.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Title and button colors */
+        .form-title {
+            font-weight: 600;
+            color: #D4AF37; /* Light Gold */
+            margin-bottom: 30px;
+        }
+
+        .btn-submit {
+            background-color:  rgb(165 148 102); /* Light Gold */
+            color: rgb(30, 30, 30);
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn-submit:hover {
+            background-color:  rgb(203, 174, 96); /* Darker Gold for hover */
+            color: white;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            box-shadow: none;
+        }
+
+        .form-control:focus {
+            border-color: #D4AF37; /* Light Gold */
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0,0.7 ); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border: 5px solid rgb(165 148 102/var(--tw-border-opacity,1));; 
+        }
+           
+        
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-size: 20px; 
+            margin-right: 10px;/* Light Gold color for navbar links */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white !important; /* Change color on hover */
+        }
+
+        /* Optional: Style for footer or additional sections if needed */
+        footer {
+            background-color: black;
+            color: #D4AF37;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+        .container {
+    max-width: 800px; /* Adjust the max-width to your desired width */
+    margin-top: 50px;
+    z-index: 10;
+    position: relative;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navbar with logo on the left -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="static/fbSystem/Images/logo.png" alt="Logo">
+            </a>
+            <!-- Navbar toggler for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="margin-right: 50px; padding-right: 10px;" href="https://www.tuke.sk/sk/zakladne-informacie-o-studiu-na-tuke" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/></svg>Study at TUKE</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div style="margin-top: 100px;" class="container">
+        <!-- <h2 style="margin-top: 50px;color: white;font-family: Montserrat, sans-serif; font-size: 40px;" class="form-title text-center">Feedback Form </h2> -->
+        <div class="card p-4 shadow-sm">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <h2 style="margin-top: 10px;color: white;font-family: Montserrat, sans-serif; font-size: 40px;" class="form-title text-center">Feedback Form </h2>
+
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" Style="border-color: #D4AF37; border: 2px solid #D4AF37;" name="name" class="form-control" id="name" value="{{ form.name.value }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="faculty"  class="form-label">Faculty</label>
+                    <input type="text" Style="border-color: #D4AF37; border: 2px solid #D4AF37;" name="faculty" class="form-control" id="faculty" value="{{ form.faculty.value }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="review" class="form-label">Your Feedback</label>
+                    <textarea name="review"  Style="border-color: #D4AF37; border: 2px solid #D4AF37;" class="form-control" id="review" rows="4" required>{{ form.review.value }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload Image (Optional)</label>
+                    <input type="file" Style="border-color: #D4AF37; border: 2px solid #D4AF37;" name="image" class="form-control" id="image">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn-submit btn btn-lg">Submit Feedback</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Load Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
